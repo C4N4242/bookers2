@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar">
+        <%= render 'shared/user_info_sidebar', user: current_user %>
+        <%= render 'shared/book_form_sidebar', book: Book.new %>
+      </div>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>Users</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Profile Image</th>
+            <th>Introduction</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.name %></td>
+              <td>
+                <% if user.profile_image.attached? %>
+                  <%= image_tag user.profile_image.variant(resize: "50x50"), size: "50x50" %>
+                <% end %>
+              </td>
+              <td><%= user.introduction %></td>
+              <td><%= link_to 'Show', user, class: 'btn btn-sm btn-primary' %></td>
+              <td><%= link_to 'Edit', edit_user_path(user), class: 'btn btn-sm btn-success' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

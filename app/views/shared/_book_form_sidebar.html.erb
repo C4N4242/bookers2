@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="card-body">
+    <h2 class="card-title">New book</h2>
+    <%= render 'shared/error_messages', resource: book %>
+    <%= form_with model: book, scope: :book, local: true do |f| %>
+      <div>
+        <%= f.label :title %><br>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+      <div>
+        <%= f.label :body %><br>
+        <%= f.text_area :body, class: "form-control" %>
+      </div>
+      <div>
+        <%= f.submit 'Create Book', class: "btn btn-primary w-100" %>
+      </div>
+    <% end %>
+  </div>
+</div>
