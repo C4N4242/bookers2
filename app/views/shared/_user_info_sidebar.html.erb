@@ -1,18 +1,22 @@
 <div class="card">
   <div class="card-body">
     <h2 class="card-title">User info</h2>
-    <% if user && user.profile_image.attached? %>
-      <%= image_tag user.profile_image.variant(resize: "50x50"), size: "50x50" %>
-    <% end %>
     <% if user %>
-      <p><%= user.name %></p>
-      <p><%= user.introduction %></p>
-      <% if user.id == current_user.id %>
-        <%= link_to edit_user_path(user), class: 'edit-user-link' do %>
-          <i class="fas fa-user-cog"></i> Edit Profile
-        <% end %>
+      <% if user.profile_image.attached? && user.profile_image.variable? %>
+        <%= image_tag user.profile_image.variant(resize: "100x100"), size: "100x100", class: "img-fluid mb-3" %>
+      <% elsif user.profile_image.attached? %>
+        <%= image_tag user.profile_image, size: "100x100", class: "img-fluid mb-3" %>
       <% else %>
-        <%= link_to '', edit_user_path(user) %>
+        <%= image_tag "no_image.jpg", size: "100x100", class: "img-fluid mb-3" %>
+      <% end %>
+      <table class="table">
+        <tr><th>name</th><th><%= user.name %></th></tr>
+        <tr><th>introduction</th><th><%= user.introduction %></th></tr>
+      </table>
+      <% if user.id == current_user.id %>
+        <%= link_to edit_user_path(user), class: 'btn btn-outline-secondary btn-block' do %>
+          <i class="fas fa-user-cog"></i>
+        <% end %>
       <% end %>
     <% end %>
   </div>

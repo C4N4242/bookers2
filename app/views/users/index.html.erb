@@ -24,6 +24,8 @@
               <td>
                 <% if user.profile_image.attached? %>
                   <%= image_tag user.profile_image.variant(resize: "50x50"), size: "50x50" %>
+                <% else %>
+                  <%= image_tag "no_image.jpg", size: "50x50" %>
                 <% end %>
               </td>
               <td><%= user.introduction %></td>
